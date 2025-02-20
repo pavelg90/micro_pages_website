@@ -48,9 +48,19 @@
 
       <section class="indices">
         <h3>מדדים עיקריים והתשואה הממוצעת השנתית (10 שנים)</h3>
-        <ul>
+        <ul class="indices-list">
           {% for index, return_val in indices.items() %}
-            <li>{{ index }}: {{ return_val|round(2) }}%</li>
+            <li class="index-item">
+              {% if index == "S&P 500" %}
+                <span class="index-pill sp500">{{ index }}: {{ return_val|round(2) }}%</span>
+              {% elif index == "Dow Jones" %}
+                <span class="index-pill dow">{{ index }}: {{ return_val|round(2) }}%</span>
+              {% elif index == "NASDAQ" %}
+                <span class="index-pill nasdaq">{{ index }}: {{ return_val|round(2) }}%</span>
+              {% else %}
+                <span class="index-pill">{{ index }}: {{ return_val|round(2) }}%</span>
+              {% endif %}
+            </li>
           {% endfor %}
         </ul>
       </section>
