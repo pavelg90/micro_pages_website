@@ -1,45 +1,82 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
-    <meta charset="UTF-8" />
-    <title>מחשבון השקעות</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/styles.css" />
+  <meta charset="UTF-8" />
+  <title>מחשבון השקעות</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <!-- Load Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>בחר את סוג ההשקעה:</h2>
-        <form action="/calculate" method="post">
-            <label for="investment_type">בחר מסלול:</label>
-            <select id="investment_type" name="investment_type">
-                <option value="children">השקעה לילדים</option>
-                <option value="retirement">השקעה עד גיל פרישה</option>
-                <option value="short_term">השקעה לטווח קצר</option>
-            </select>
+  <div class="container">
+    <h2>בחר תוכנית:</h2>
+    <!-- Single dropdown for plan selection -->
+    <form id="plan-select-form">
+      <label for="plan_type">בחר תוכנית:</label>
+      <select id="plan_type" name="plan_type">
+        <option value="investment" selected>חישוב השקעות</option>
+        <option value="goal">תכנון מטרה</option>
+      </select>
+    </form>
 
-            <label for="initial_amount">כסף התחלתי:</label>
-            <input type="number" id="initial_amount" name="initial_amount" required />
+    <!-- Investment Calculator Section -->
+    <div id="investment-section">
+      <h2>מחשבון השקעות</h2>
+      <form id="investment-form">
+        <label for="initial_amount">כסף התחלתי:</label>
+        <input type="number" id="initial_amount" name="initial_amount" required />
 
-            <label for="monthly_contribution">הפקדה חודשיתי:</label>
-            <input type="number" id="monthly_contribution" name="monthly_contribution" required />
+        <label for="monthly_contribution">הפקדה חודשית:</label>
+        <input type="number" id="monthly_contribution" name="monthly_contribution" required />
 
-            <label for="annual_interest">כמה ריבית שנתית צפויה (%):</label>
-            <input type="number" step="0.01" id="annual_interest" name="annual_interest" required />
+        <label for="annual_interest">כמה ריבית שנתית צפויה (%):</label>
+        <input type="number" step="0.01" id="annual_interest" name="annual_interest" required />
 
-            <label for="years">שנות הפקדה:</label>
-            <input type="number" id="years" name="years" required />
+        <label for="years">שנות הפקדה:</label>
+        <input type="number" id="years" name="years" required />
+      </form>
 
-            <button type="submit">חשב</button>
-        </form>
+      <div id="result">
+        <h3>תוצאה</h3>
+        <p id="final_amount">סכום סופי: 0 ₪</p>
+      </div>
 
-        <section class="indices">
-            <h3>מדדים עיקריים והתשואה הממוצעת השנתית (10 שנים)</h3>
-            <ul>
-                {% for index, return_val in indices.items() %}
-                    <li>{{ index }}: {{ return_val|round(2) }}%</li>
-                {% endfor %}
-            </ul>
-        </section>
+      <div class="chart-container" id="chartContainer">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <section class="indices">
+        <h3>מדדים עיקריים והתשואה הממוצעת השנתית (10 שנים)</h3>
+        <ul>
+          {% for index, return_val in indices.items() %}
+            <li>{{ index }}: {{ return_val|round(2) }}%</li>
+          {% endfor %}
+        </ul>
+      </section>
     </div>
+
+    <!-- Goal Planner Section -->
+    <div id="goal-section" style="display:none;">
+      <h2>תכנון מטרה</h2>
+      <form id="goal-form">
+        <label for="target_amount">סכום יעד (₪):</label>
+        <input type="number" id="target_amount" name="target_amount" required />
+
+        <label for="target_years">מספר שנים:</label>
+        <input type="number" id="target_years" name="target_years" required />
+
+        <label for="target_interest">ריבית שנתית צפויה (%):</label>
+        <input type="number" step="0.01" id="target_interest" name="target_interest" required />
+      </form>
+      <div id="goal-result">
+        <p id="recommended_initial">הון התחלתי מומלץ: - ₪</p>
+        <p id="recommended_monthly">הפקדה חודשית מומלצת: - ₪</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load external JavaScript file -->
+  <script src="/static/main.js"></script>
 </body>
 </html>

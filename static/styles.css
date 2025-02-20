@@ -1,65 +1,103 @@
 /* styles.css */
 
+/* Global styling */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-
-    /* RTL for Hebrew text */
-    direction: rtl;
-
-    /* Flexbox to center everything vertically and horizontally */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  direction: rtl; /* Right-to-left for Hebrew */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #333; /* Default text color */
 }
 
+/* Main container */
 .container {
-    /* White card in the center */
-    background-color: #fff;
-    width: 90%;
-    max-width: 600px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-
-    /* Right-align all text in the container */
-    text-align: right;
+  background-color: #fff;
+  width: 95%;
+  max-width: 600px;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: right;
 }
 
-h2, h3, p, label {
-    margin: 0.5em 0;
+/* Headings */
+h2, h3 {
+  margin-top: 0;
+  margin-bottom: 0.75em;
+  color: #333;
 }
 
-form {
-    margin-top: 1em;
+/* Labels */
+label {
+  display: block;
+  margin: 0.75em 0 0.25em;
+  font-weight: bold;
 }
 
+/* Inputs and selects */
 input, select {
-    width: 100%;
-    margin: 0.5em 0;
-    padding: 10px;
-    box-sizing: border-box;
-
-    /* Align text to the right within inputs if desired */
-    text-align: right;
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 1em;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+/* Plan selector form (the dropdown) */
+#plan-select-form {
+  margin-bottom: 1.5em;
 }
 
-button:hover {
-    background-color: #0056b3;
+button, select {
+  cursor: pointer;
+}
+
+/* The container for the chart */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  margin-top: 1.5em;
+  display: none; /* Hidden by default until we have data */
+}
+
+/* Indices section */
+.indices {
+  margin-top: 1.5em;
+}
+
+/* Unordered list style reset */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.5em 0;
+}
+
+ul li {
+  margin: 0.25em 0;
+}
+
+/* Result boxes for investment or goal sections */
+#result,
+#goal-result {
+  margin-top: 1em;
+  background: #f7f7f7;
+  padding: 1em;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+#result p,
+#goal-result p {
+  margin: 0.5em 0;
+  font-size: 1.1em;
+  color: #333;
 }

@@ -109,42 +109,4 @@ async def home(request: Request):
         }
     )
 
-@app.post("/calculate", response_class=HTMLResponse)
-async def calculate(
-    request: Request,
-    investment_type: str = Form(...),
-    initial_amount: float = Form(...),
-    monthly_contribution: float = Form(...),
-    annual_interest: float = Form(...),
-    years: int = Form(...)
-):
-    """
-    Compound interest calculation with monthly compounding.
-    A = P(1 + r/n)^(n*t) + PMT * [((1 + r/n)^(n*t) - 1) / (r/n)]
-    """
-
-    n = 12
-    r = annual_interest / 100
-    t = years
-    P = initial_amount
-    PMT = monthly_contribution
-
-    if r > 0:
-        final_amount = P * (1 + r / n) ** (n * t) + PMT * (((1 + r / n) ** (n * t) - 1) / (r / n))
-    else:
-        final_amount = P + PMT * n * t
-
-    return templates.TemplateResponse(
-        "calculator.html",
-        {
-            "request": request,
-            "investment_type": investment_type,
-            "initial_amount": initial_amount,
-            "monthly_contribution": monthly_contribution,
-            "annual_interest": annual_interest,
-            "years": years,
-            "final_amount": round(final_amount, 2)
-        }
-    )
-
 
