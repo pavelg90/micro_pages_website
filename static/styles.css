@@ -1,0 +1,65 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+
+    /* RTL for Hebrew text */
+    direction: rtl;
+
+    /* Flexbox to center everything vertically and horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+}
+
+.container {
+    /* White card in the center */
+    background-color: #fff;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    /* Right-align all text in the container */
+    text-align: right;
+}
+
+h2, h3, p, label {
+    margin: 0.5em 0;
+}
+
+form {
+    margin-top: 1em;
+}
+
+input, select {
+    width: 100%;
+    margin: 0.5em 0;
+    padding: 10px;
+    box-sizing: border-box;
+
+    /* Align text to the right within inputs if desired */
+    text-align: right;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 1em;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

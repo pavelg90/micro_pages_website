@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <title>Interest Calculator</title>
+    <meta charset="UTF-8" />
+    <title>מחשבון השקעות</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles.css" />
 </head>
 <body>
-    <h2>Simple Interest Calculator</h2>
-    <form action="/calculate" method="post">
-        <label for="principal">Principal Amount:</label>
-        <input type="number" name="principal" required><br><br>
+    <div class="container">
+        <h2>בחר את סוג ההשקעה:</h2>
+        <form action="/calculate" method="post">
+            <label for="investment_type">בחר מסלול:</label>
+            <select id="investment_type" name="investment_type">
+                <option value="children">השקעה לילדים</option>
+                <option value="retirement">השקעה עד גיל פרישה</option>
+                <option value="short_term">השקעה לטווח קצר</option>
+            </select>
 
-        <label for="rate">Annual Interest Rate (%):</label>
-        <input type="number" step="0.01" name="rate" required><br><br>
+            <label for="initial_amount">כמה כסף אתה שם בבסיס:</label>
+            <input type="number" id="initial_amount" name="initial_amount" required />
 
-        <label for="time">Time (Years):</label>
-        <input type="number" step="0.1" name="time" required><br><br>
+            <label for="monthly_contribution">כמה אתה שם חודשי:</label>
+            <input type="number" id="monthly_contribution" name="monthly_contribution" required />
 
-        <button type="submit">Calculate</button>
-    </form>
+            <label for="annual_interest">כמה ריבית שנתית צפויה (%):</label>
+            <input type="number" step="0.01" id="annual_interest" name="annual_interest" required />
+
+            <label for="years">לכמה שנים ההשקעה:</label>
+            <input type="number" id="years" name="years" required />
+
+            <button type="submit">חשב</button>
+        </form>
+
+        <section class="indices">
+            <h3>מדדים עיקריים והתשואה הממוצעת השנתית (10 שנים)</h3>
+            <ul>
+                {% for index, return_val in indices.items() %}
+                    <li>{{ index }}: {{ return_val|round(2) }}%</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
 </body>
 </html>

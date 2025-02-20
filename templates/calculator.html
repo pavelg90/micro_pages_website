@@ -1,0 +1,30 @@
+<!-- calculator.html -->
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תוצאה</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>תוצאה - {{ investment_type }}</h2>
+        <p>הון התחלתי: {{ initial_amount }} ₪</p>
+        <p>הפקדות חודשיות: {{ monthly_contribution }} ₪</p>
+        <p>ריבית שנתית: {{ annual_interest }}%</p>
+        <p>תקופת ההשקעה: {{ years }} שנים</p>
+        <h3>סכום סופי: {{ final_amount }} ₪</h3>
+
+        {% if investment_type == 'short_term' %}
+        <div class="short-term-suggestions">
+            <h3>הצעות למסלול השקעה לטווח קצר</h3>
+            <p>1. השקעה במניות עם סיכון גבוה יותר</p>
+            <p>2. השקעה במדדים עם סיכון נמוך יותר</p>
+        </div>
+        {% endif %}
+
+        <a href="/">🔙 חזור</a>
+    </div>
+</body>
+</html>

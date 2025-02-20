@@ -27,8 +27,7 @@ fastapi_app/
 
 ### 1️⃣ **Clone the Repository**
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/pavelg90/micro_pages_website.git
 ```
 
 ### 2️⃣ **Create a Virtual Environment (Optional, but recommended)**
